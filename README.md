@@ -1,6 +1,10 @@
 # Node project
 
-This program create nodes which communicate with each other using TCP. Each node is its own thred. Network node will connect to another node if gateway was passed. When Network node will receive the request it will create another thread to fulfill the commands. If request coming from the another node asking for connection, the handshake procedure will be started and then the network nodes will exchange theirs ids and add them to the list. If client request the resources and node do not have this type available, then asked node will communicate to the other nodes for the resource it did not have. The moment the main node have the information that the all resources are available it will send command ACTIVATE_ALLOCATOR to reserve those resources on the nodes where they were free. If any of the node have given resources available then network node will send message FAILED to the client.
+This program creates nodes that communicate with each other using TCP. Each node runs as its own thread. A network node will connect to another node if a gateway is provided. When a network node receives a request, it will create another thread to process the commands.
+
+If a request comes from another node asking for a connection, the handshake procedure will be initiated, and the network nodes will exchange their IDs and add them to the list. If a client requests resources and the node does not have the requested type available, the node will communicate with other nodes to locate the missing resource.
+
+Once the main node confirms that all required resources are available, it will send the command ACTIVATE_ALLOCATOR to reserve those resources on the nodes where they are free. If none of the nodes have the requested resources available, the network node will send a FAILED message to the client.
 
 ## Compling:
 javac NetworkNode.java
